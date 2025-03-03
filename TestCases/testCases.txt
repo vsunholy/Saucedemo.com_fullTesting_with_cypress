@@ -4,207 +4,207 @@ Test Cases for SauceDemo Website
 1. Login Page
 ------------------------------------------------------------
 TC-LOGIN-01: Valid Login (Standard User)
-- Preconditions: Vartotojas turi galiojančius prisijungimo duomenis (pvz., standard_user).
+- Preconditions: The user has valid login credentials (e.g., standard_user).
 - Steps:
-  1. Atidaryti prisijungimo puslapį.
-  2. Įvesti teisingą vartotojo vardą ir slaptažodį.
-  3. Paspausti „Login“ mygtuką.
-- Expected Result: Vartotojas nukreipiamas į Inventoriaus puslapį.
+  1. Open the login page.
+  2. Enter the correct username and password.
+  3. Click the "Login" button.
+- Expected Result: The user is redirected to the Inventory page.
 
 TC-LOGIN-02: Invalid Credentials
-- Preconditions: Naudoti neteisingus prisijungimo duomenis.
+- Preconditions: Use incorrect login credentials.
 - Steps:
-  1. Atidaryti prisijungimo puslapį.
-  2. Įvesti neteisingą vartotojo vardą ir/ar slaptažodį.
-  3. Paspausti „Login“ mygtuką.
-- Expected Result: Rodomas klaidos pranešimas apie neteisingus duomenis.
+  1. Open the login page.
+  2. Enter an incorrect username and/or password.
+  3. Click the "Login" button.
+- Expected Result: An error message regarding invalid credentials is displayed.
 
 TC-LOGIN-03: Locked Out User
-- Preconditions: Vartotojas turi „locked_out_user“ statusą.
+- Preconditions: The user has a "locked_out_user" status.
 - Steps:
-  1. Atidaryti prisijungimo puslapį.
-  2. Įvesti locked_out_user duomenis.
-  3. Paspausti „Login“ mygtuką.
-- Expected Result: Rodomas klaidos pranešimas, nurodantis, kad vartotojas užblokuotas.
+  1. Open the login page.
+  2. Enter the locked_out_user credentials.
+  3. Click the "Login" button.
+- Expected Result: An error message indicating that the user is locked out is displayed.
 
 TC-LOGIN-04: Special User Scenarios (problem_user, performance_glitch_user)
-- Preconditions: Turėti specialių vartotojų duomenis.
+- Preconditions: Credentials for special user accounts are available.
 - Steps:
-  1. Atidaryti prisijungimo puslapį.
-  2. Įvesti specialiojo vartotojo (problem_user arba performance_glitch_user) duomenis.
-  3. Paspausti „Login“ mygtuką.
-- Expected Result: Vartotojas turi matyti atitinkamą elgseną (pvz., grafinės klaidos ar našumo problemos) pagal vartotojo tipą.
+  1. Open the login page.
+  2. Enter the credentials for the special user (problem_user or performance_glitch_user).
+  3. Click the "Login" button.
+- Expected Result: The user should experience the corresponding behavior (e.g., graphical errors or performance issues) according to the user type.
 
 ------------------------------------------------------------
-2. Inventoriaus Puslapis (Prekių Sąrašas)
+2. Inventory Page (Products List)
 ------------------------------------------------------------
-TC-INVENTORY-01: Prekių Sąrašo Atvaizdavimas
-- Preconditions: Vartotojas prisijungęs.
+TC-INVENTORY-01: Displaying the Products List
+- Preconditions: The user is logged in.
 - Steps:
-  1. Nukreipti į Inventoriaus puslapį.
-- Expected Result: Rodomi visi produktai su vaizdais, pavadinimais, aprašymais ir kainomis.
+  1. Navigate to the Inventory page.
+- Expected Result: All products are displayed with images, names, descriptions, and prices.
 
-TC-INVENTORY-02: Add to Cart Funkcionalumas
-- Preconditions: Vartotojas prisijungęs.
+TC-INVENTORY-02: Add to Cart Functionality
+- Preconditions: The user is logged in.
 - Steps:
-  1. Paspausti „Add to Cart“ mygtuką prie vieno ar kelių produktų.
-- Expected Result: Krepšelio piktogramos skaičius atnaujinamas pagal įtrauktų prekių kiekį.
+  1. Click the "Add to Cart" button next to one or more products.
+- Expected Result: The shopping cart icon's item count updates to reflect the added items.
 
-TC-INVENTORY-03: Rikiavimo Funkcijos
-- Preconditions: Vartotojas prisijungęs.
+TC-INVENTORY-03: Sorting Functionality
+- Preconditions: The user is logged in.
 - Steps:
-  1. Pasirinkti rikiavimo parinktį (pvz., pavadinimu A-Z, Z-A, kainos nuo mažiausios iki didžiausios ir atvirkščiai).
-- Expected Result: Produktų sąrašas perrikiuojamas pagal pasirinkimą.
-
-------------------------------------------------------------
-3. Produkto Detalių Puslapis
-------------------------------------------------------------
-TC-PRODUCT-01: Produkto Detalių Peržiūra
-- Preconditions: Vartotojas prisijungęs, turintis prieigą prie inventoriaus puslapio.
-- Steps:
-  1. Paspausti ant produkto pavadinimo ar paveikslėlio.
-- Expected Result: Rodoma išsami produkto informacija (aprašymas, kaina, vaizdas).
-
-TC-PRODUCT-02: Pridėti/Pašalinti Produktą Iš Krepšelio
-- Preconditions: Vartotojas yra produkto detalių puslapyje.
-- Steps:
-  1. Paspausti „Add to Cart“ mygtuką, tada „Remove“ (jei taikoma).
-- Expected Result: Produktas pridedamas į arba pašalinamas iš krepšelio.
-
-TC-PRODUCT-03: Grįžimas į Inventoriaus Puslapį
-- Preconditions: Vartotojas yra produkto detalių puslapyje.
-- Steps:
-  1. Paspausti grįžimo nuorodą.
-- Expected Result: Vartotojas nukreipiamas atgal į prekių sąrašo puslapį.
+  1. Choose a sorting option (e.g., by name A-Z, Z-A, price low-to-high and high-to-low).
+- Expected Result: The product list is re-sorted according to the selected option.
 
 ------------------------------------------------------------
-4. Krepšelio Puslapis
+3. Product Details Page
 ------------------------------------------------------------
-TC-CART-01: Prekių Atvaizdavimas Krepšelyje
-- Preconditions: Bent viena prekė pridėta į krepšelį.
+TC-PRODUCT-01: Viewing Product Details
+- Preconditions: The user is logged in and has access to the Inventory page.
 - Steps:
-  1. Atidaryti krepšelio puslapį.
-- Expected Result: Rodomas visų pridėtų prekių sąrašas.
+  1. Click on a product's name or image.
+- Expected Result: Detailed product information is displayed (description, price, image).
 
-TC-CART-02: Prekių Pašalinimo Funkcija
-- Preconditions: Krepšelyje yra prekės.
+TC-PRODUCT-02: Add/Remove Product from Cart
+- Preconditions: The user is on the product details page.
 - Steps:
-  1. Paspausti „Remove“ mygtuką prie prekės.
-- Expected Result: Atitinkama prekė pašalinama, krepšelio sąrašas atnaujinamas.
+  1. Click the "Add to Cart" button, then "Remove" (if applicable).
+- Expected Result: The product is either added to or removed from the cart.
 
-TC-CART-03: Checkout Mygtuko Funkcionalumas
-- Preconditions: Krepšelyje turi būti prekės.
+TC-PRODUCT-03: Returning to the Inventory Page
+- Preconditions: The user is on the product details page.
 - Steps:
-  1. Paspausti „Checkout“ mygtuką.
-- Expected Result: Vartotojas nukreipiamas į užsakymo proceso pirmą žingsnį.
-
-------------------------------------------------------------
-5. Užsakymo Procesas
-------------------------------------------------------------
-TC-CHECKOUT-01: Užsakymo Kliento Duomenų Forma
-- Preconditions: Vartotojas yra krepšelio puslapyje ir paspaudęs „Checkout“.
-- Steps:
-  1. Įvesti teisingus duomenis (vardas, pavardė, pašto kodas).
-  2. Paspausti „Continue“.
-- Expected Result: Vartotojas pereina į užsakymo apžvalgos puslapį.
-
-TC-CHECKOUT-02: Tuščių Laukų Tikrinimas Užsakymo Formoje
-- Preconditions: Vartotojas atsidaręs užsakymo duomenų puslapį.
-- Steps:
-  1. Palikti vieną ar daugiau privalomų laukų tuščią.
-  2. Paspausti „Continue“.
-- Expected Result: Rodomas klaidos pranešimas nurodantis, kurie laukai privalomi.
-
-TC-CHECKOUT-03: Užsakymo Apžvalgos Puslapis
-- Preconditions: Teisingai užpildyta kliento informacija.
-- Steps:
-  1. Atidaryti užsakymo apžvalgos puslapį.
-- Expected Result: Rodomas teisingas užsakytų prekių sąrašas, kainos, taikomi mokesčiai ir bendra suma.
-
-TC-CHECKOUT-04: Užsakymo Atšaukimo Funkcija
-- Preconditions: Vartotojas užsakymo apžvalgos puslapyje.
-- Steps:
-  1. Paspausti „Cancel“.
-- Expected Result: Vartotojas grįžta atgal į krepšelio arba inventoriaus puslapį be užsakymo patvirtinimo.
-
-TC-CHECKOUT-05: Užsakymo Užbaigimo Funkcija
-- Preconditions: Vartotojas yra užsakymo apžvalgos puslapyje.
-- Steps:
-  1. Paspausti „Finish“.
-- Expected Result: Užsakymas užbaigtas, rodomas užsakymo patvirtinimo puslapis su patvirtinimo pranešimu ir „Back Home“ mygtuku.
+  1. Click the back link.
+- Expected Result: The user is redirected back to the products list page.
 
 ------------------------------------------------------------
-6. Šoninio Meniu (Hamburger Meniu)
+4. Cart Page
 ------------------------------------------------------------
-TC-SIDEMENU-01: Meniu Atidarymas
-- Preconditions: Vartotojas yra inventoriaus puslapyje.
+TC-CART-01: Displaying Items in the Cart
+- Preconditions: At least one product has been added to the cart.
 - Steps:
-  1. Paspausti hamburger meniu piktogramą.
-- Expected Result: Meniu iššoksta su visomis parinktimis.
+  1. Open the Cart page.
+- Expected Result: A list of all added products is displayed.
 
-TC-SIDEMENU-02: Navigacija „All Items“
-- Preconditions: Šoninis meniu atidarytas.
+TC-CART-02: Remove Item Functionality
+- Preconditions: There are products in the cart.
 - Steps:
-  1. Pasirinkti „All Items“.
-- Expected Result: Vartotojas nukreipiamas į prekių sąrašo puslapį.
+  1. Click the "Remove" button next to a product.
+- Expected Result: The selected product is removed, and the cart list is updated.
 
-TC-SIDEMENU-03: Navigacija „About“
-- Preconditions: Šoninis meniu atidarytas.
+TC-CART-03: Checkout Button Functionality
+- Preconditions: There must be items in the cart.
 - Steps:
-  1. Pasirinkti „About“.
-- Expected Result: Vartotojas nukreipiamas į Sauce Labs informacinį puslapį.
-
-TC-SIDEMENU-04: Atsijungimo Funkcija
-- Preconditions: Vartotojas yra prisijungęs.
-- Steps:
-  1. Pasirinkti „Logout“ meniu parinktį.
-- Expected Result: Vartotojas atsijungiamas ir grąžinamas į prisijungimo puslapį.
-
-TC-SIDEMENU-05: Reset Funkcija
-- Preconditions: Vartotojas turi prekių krepšelyje arba sesijos duomenų.
-- Steps:
-  1. Pasirinkti „Reset“.
-- Expected Result: Krepšelis ir sesijos duomenys atstatomi į pradinę būseną.
+  1. Click the "Checkout" button.
+- Expected Result: The user is redirected to the first step of the checkout process.
 
 ------------------------------------------------------------
-7. Adaptuojamumo (Responsyvumo) Testai
+5. Checkout Process
 ------------------------------------------------------------
-TC-RESPONSIVE-01: Desktop Peržiūra
-- Preconditions: Naudojant stacionarų kompiuterį.
+TC-CHECKOUT-01: Customer Information Form in Checkout
+- Preconditions: The user is on the Cart page and has clicked "Checkout".
 - Steps:
-  1. Atidaryti svetainę.
-- Expected Result: Svetainės išdėstymas yra teisingas, visi elementai rodomi tinkamai.
+  1. Enter valid customer information (first name, last name, postal code).
+  2. Click "Continue".
+- Expected Result: The user proceeds to the Order Overview page.
 
-TC-RESPONSIVE-02: Tablet Peržiūra
-- Preconditions: Naudojant planšetinį įrenginį arba simuliatorių.
+TC-CHECKOUT-02: Empty Fields in Checkout Form
+- Preconditions: The user is on the customer information page of the checkout.
 - Steps:
-  1. Atidaryti svetainę.
-- Expected Result: Svetainės dizainas prisitaiko prie tablet ekrano dydžio.
+  1. Leave one or more required fields empty.
+  2. Click "Continue".
+- Expected Result: An error message is displayed indicating which required fields are missing.
 
-TC-RESPONSIVE-03: Mobile Peržiūra
-- Preconditions: Naudojant mobilųjį telefoną arba simuliatorių.
+TC-CHECKOUT-03: Order Overview Page
+- Preconditions: Valid customer information has been provided.
 - Steps:
-  1. Atidaryti svetainę.
-- Expected Result: Visi mygtukai, nuorodos ir funkcijos pasiekiamos, svetainės dizainas yra pritaikytas mažesniam ekranui.
+  1. Navigate to the Order Overview page.
+- Expected Result: The correct list of ordered products is displayed along with prices, applicable taxes, and the total sum.
+
+TC-CHECKOUT-04: Cancel Order Functionality
+- Preconditions: The user is on the Order Overview page.
+- Steps:
+  1. Click the "Cancel" button.
+- Expected Result: The user is redirected back to the Cart or Inventory page without confirming the order.
+
+TC-CHECKOUT-05: Finish Order Functionality
+- Preconditions: The user is on the Order Overview page.
+- Steps:
+  1. Click the "Finish" button.
+- Expected Result: The order is completed, and the Order Confirmation page is displayed with a confirmation message and a "Back Home" button.
 
 ------------------------------------------------------------
-8. Klaidų Tvarkymo Testai
+6. Side Menu (Hamburger Menu)
 ------------------------------------------------------------
-TC-ERROR-01: Netinkamo Prisijungimo Klaida
-- Preconditions: Įvesti neteisingus prisijungimo duomenis.
+TC-SIDEMENU-01: Opening the Menu
+- Preconditions: The user is on the Inventory page.
 - Steps:
-  1. Bandyti prisijungti su neteisingu vartotojo vardu ir/ar slaptažodžiu.
-- Expected Result: Rodomas tinkamas klaidos pranešimas.
+  1. Click the hamburger menu icon.
+- Expected Result: The menu appears with all available options.
 
-TC-ERROR-02: Užsakymo Formos Tuščių Laukų Klaida
-- Preconditions: Vartotojas atsidaręs užsakymo kliento duomenų puslapį.
+TC-SIDEMENU-02: Navigation to "All Items"
+- Preconditions: The side menu is open.
 - Steps:
-  1. Palikti vieną ar daugiau privalomų laukų tuščią.
-  2. Paspausti „Continue“.
-- Expected Result: Rodomas klaidos pranešimas nurodantis privalomų laukų trūkumą.
+  1. Select "All Items".
+- Expected Result: The user is redirected to the products list page.
 
-TC-ERROR-03: Add to Cart / Krepšelio Klaida
-- Preconditions: Simuliuoti situaciją, kai prekės negali būti pridėtos (jei taikoma).
+TC-SIDEMENU-03: Navigation to "About"
+- Preconditions: The side menu is open.
 - Steps:
-  1. Bandyti pridėti prekę į krepšelį.
-- Expected Result: Rodoma tinkama klaidos žinutė arba alternatyvus elgesys, užtikrinantis nuoseklų vartotojo patirtį.
+  1. Select "About".
+- Expected Result: The user is redirected to the Sauce Labs information page.
+
+TC-SIDEMENU-04: Logout Functionality
+- Preconditions: The user is logged in.
+- Steps:
+  1. Select the "Logout" option from the menu.
+- Expected Result: The user is logged out and redirected to the login page.
+
+TC-SIDEMENU-05: Reset Functionality
+- Preconditions: The user has items in the cart or session data.
+- Steps:
+  1. Select "Reset".
+- Expected Result: The shopping cart and session data are reset to their initial state.
+
+------------------------------------------------------------
+7. Responsiveness Tests
+------------------------------------------------------------
+TC-RESPONSIVE-01: Desktop View
+- Preconditions: Using a desktop computer.
+- Steps:
+  1. Open the website.
+- Expected Result: The website layout is correct and all elements are displayed properly.
+
+TC-RESPONSIVE-02: Tablet View
+- Preconditions: Using a tablet device or simulator.
+- Steps:
+  1. Open the website.
+- Expected Result: The website design adapts to the tablet screen size.
+
+TC-RESPONSIVE-03: Mobile View
+- Preconditions: Using a mobile phone or simulator.
+- Steps:
+  1. Open the website.
+- Expected Result: All buttons, links, and functions are accessible, and the website design is adapted for smaller screens.
+
+------------------------------------------------------------
+8. Error Handling Tests
+------------------------------------------------------------
+TC-ERROR-01: Incorrect Login Error
+- Preconditions: Enter incorrect login credentials.
+- Steps:
+  1. Attempt to log in with an incorrect username and/or password.
+- Expected Result: An appropriate error message is displayed.
+
+TC-ERROR-02: Empty Fields in Checkout Form Error
+- Preconditions: The user is on the customer information page of the checkout.
+- Steps:
+  1. Leave one or more required fields empty.
+  2. Click "Continue".
+- Expected Result: An error message is displayed indicating that required fields are missing.
+
+TC-ERROR-03: Add to Cart / Cart Error
+- Preconditions: Simulate a situation where a product cannot be added (if applicable).
+- Steps:
+  1. Attempt to add a product to the cart.
+- Expected Result: An appropriate error message is displayed or alternative behavior is triggered, ensuring a consistent user experience.
