@@ -2,7 +2,10 @@
   "name": "saucedemo.com_fulltesting_with_cypress_and_playwright",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "cy": "cypress open"
+  },
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
