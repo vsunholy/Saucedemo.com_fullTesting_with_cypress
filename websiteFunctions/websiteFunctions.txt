@@ -1,0 +1,50 @@
+SauceDemo svetainės funkcijų aprašymas
+
+1. Prisijungimo puslapis:
+   - Vartotojo vardo ir slaptažodžio įvedimo laukai.
+   - Prisijungimo mygtukas.
+   - Klaidos pranešimai neteisingiems įvestiems duomenims.
+   - Skirtingų vartotojų tipų valdymas (pvz., standard_user, locked_out_user, problem_user, performance_glitch_user).
+
+2. Prekių sąrašo puslapis (Inventoriaus puslapis):
+   - Produktų sąrašo rodymas su vaizdais, pavadinimais, aprašymais ir kainomis.
+   - "Pridėti į krepšelį" mygtukai prie kiekvieno produkto.
+   - Rikiavimo funkcionalumas:
+         * Pagal pavadinimą: A-Z ir Z-A.
+         * Pagal kainą: nuo mažiausios iki didžiausios bei atvirkščiai.
+   - Krepšelio piktograma su įtrauktų prekių kiekiu.
+
+3. Produkto detalių puslapis:
+   - Išsamus pasirinkto produkto aprašymas.
+   - Galimybė pridėti arba pašalinti produktą iš krepšelio.
+   - Nuoroda grįžti į prekių sąrašą.
+
+4. Krepšelio puslapis:
+   - Pridėtų prekių sąrašo rodymas.
+   - Prekių pašalinimo iš krepšelio funkcija.
+   - Užsakymo (checkout) mygtukas.
+
+5. Užsakymo procesas:
+   a. Užsakymo žingsnis 1:
+      - Forma klientų duomenų įvedimui (vardas, pavardė, pašto kodas).
+      - Tęsti (continue) mygtukas.
+   b. Užsakymo žingsnis 2 (Užsakymo apžvalga):
+      - Užsakytų prekių sąrašas su kainomis, mokesčiais ir bendra suma.
+      - Parinktys: Atšaukti (cancel) ir Užbaigti (finish) užsakymą.
+   c. Užsakymo patvirtinimo puslapis:
+      - Užsakymo patvirtinimo pranešimas.
+      - Mygtukas grįžti į pradinį puslapį (Back Home).
+
+6. Šoninės meniu funkcionalumas (Hamburger meniu):
+   - Prieinamas iš prekių sąrašo puslapio.
+   - Meniu parinktys:
+         * Visos prekės (nuoroda į prekių sąrašą)
+         * Apie (peradresuoja į Sauce Labs informacinį puslapį)
+         * Atsijungti (išsijungimo funkcija)
+         * Būsena iš naujo (reset — atstatyti krepšelio ir sesijos duomenis)
+
+7. Adaptuojamumas:
+   - Svetainės dizainas prisitaiko prie skirtingų ekrano dydžių (responsyvus dizainas).
+
+8. Klaidos tvarkymas ir pranešimai:
+   - Tinkami pranešimai už klaidingą prisijungimą ar neužpildytus duomenis užsakymo procese.
