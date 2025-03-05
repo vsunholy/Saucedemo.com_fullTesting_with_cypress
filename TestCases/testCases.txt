@@ -27,14 +27,6 @@ TC-LOGIN-03: Locked Out User
   3. Click the "Login" button.
 - Expected Result: An error message indicating that the user is locked out is displayed.
 
-TC-LOGIN-04: Special User Scenarios (problem_user, performance_glitch_user)
-- Preconditions: Credentials for special user accounts are available.
-- Steps:
-  1. Open the login page.
-  2. Enter the credentials for the special user (problem_user or performance_glitch_user).
-  3. Click the "Login" button.
-- Expected Result: The user should experience the corresponding behavior (e.g., graphical errors or performance issues) according to the user type.
-
 ------------------------------------------------------------
 2. Inventory Page (Products List)
 ------------------------------------------------------------
