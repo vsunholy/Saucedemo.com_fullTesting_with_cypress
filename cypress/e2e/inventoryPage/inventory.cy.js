@@ -162,7 +162,7 @@ describe('Inventory tests', () => {
   });
   
   context('Checkout Button Functionality', () => {
-    it.only('should redirect to the first step of the checkout process when the Checkout button is clicked', () => {
+    it('should redirect to the first step of the checkout process when the Checkout button is clicked', () => {
       const user = usersData.stn;
       cy.login(user.username, user.password);
       cy.url().should('include', '/inventory.html');
