@@ -160,7 +160,7 @@ describe('Inventory tests', () => {
       cy.get('.cart_item').should('have.length', 0);
     });
   });
-  
+
   context('Checkout Button Functionality', () => {
     it('should redirect to the first step of the checkout process when the Checkout button is clicked', () => {
       const user = usersData.stn;
@@ -176,18 +176,159 @@ describe('Inventory tests', () => {
       cy.url().should('include', '/checkout-step-one.html');
     });
   });
-  
 
 
+  context('Customer Information Form in Checkout', () => {
+    it('should proceed to the Order Overview page when valid customer information is provided', () => {
+      const user = usersData.stn;
+      cy.login(user.username, user.password);
+      cy.url().should('include', '/inventory.html');
+      cy.get('.inventory_item').first().within(() => {
+        cy.contains('Add to cart').click();
+      });
+      cy.get('.shopping_cart_link').click();
+      cy.url().should('include', '/cart.html');
+      cy.contains('Checkout').click();
+      cy.url().should('include', '/checkout-step-one.html');
+      cy.get('[data-test="firstName"]').type('Spider');
+      cy.get('[data-test="lastName"]').type('Man');
+      cy.get('[data-test="postalCode"]').type('12345');
+      cy.get('[data-test="continue"]').click();
+      cy.url().should('include', '/checkout-step-two.html');
+    });
+  });
+
+  context('Empty Fields in Checkout Form', () => {
+    it('should display an error message when required fields are empty', () => {
+      const user = usersData.stn;
+      cy.login(user.username, user.password);
+      cy.url().should('include', '/inventory.html');
+      cy.get('.inventory_item').first().within(() => {
+        cy.contains('Add to cart').click();
+      });
+      cy.get('.shopping_cart_link').click();
+      cy.url().should('include', '/cart.html');
+      cy.contains('Checkout').click();
+      cy.url().should('include', '/checkout-step-one.html');
+      cy.get('[data-test="firstName"]').type('Bat');
+      cy.get('[data-test="lastName"]').type('man');
+      cy.get('[data-test="continue"]').click();
+      cy.get('[data-test="error"]')
+        .should('be.visible')
+        .and('contain', 'Postal Code');
+    });
+  });
+
+  context('Order Overview Page', () => {
+    it('should display the ordered products, prices, taxes, and total sum on the Order Overview page', () => {
+      const user = usersData.stn;
+      cy.login(user.username, user.password);
+      cy.url().should('include', '/inventory.html');
+      cy.get('.inventory_item').first().within(() => {
+        cy.contains('Add to cart').click();
+      });
+      cy.get('.shopping_cart_link').click();
+      cy.url().should('include', '/cart.html');
+      cy.contains('Checkout').click();
+      cy.url().should('include', '/checkout-step-one.html');
+      cy.get('[data-test="firstName"]').type('Super');
+      cy.get('[data-test="lastName"]').type('man');
+      cy.get('[data-test="postalCode"]').type('12345');
+      cy.get('[data-test="continue"]').click();
+      cy.url().should('include', '/checkout-step-two.html');
+      cy.get('.cart_item').should('have.length.greaterThan', 0);
+      cy.get('.summary_subtotal_label').should('be.visible').and('contain', '$');
+      cy.get('.summary_tax_label').should('be.visible').and('contain', '$');
+      cy.get('.summary_total_label').should('be.visible').and('contain', '$');
+    });
+  });
+
+  context('Cancel Order Functionality', () => {
+    it('should cancel the order and redirect the user back to the Inventory page', () => {
+      const user = usersData.stn;
+      cy.login(user.username, user.password);
+      cy.url().should('include', '/inventory.html');
+      cy.get('.inventory_item').first().within(() => {
+        cy.contains('Add to cart').click();
+      });
+      cy.get('.shopping_cart_link').click();
+      cy.url().should('include', '/cart.html');
+      cy.contains('Checkout').click();
+      cy.url().should('include', '/checkout-step-one.html');
+      cy.get('[data-test="firstName"]').type('Son');
+      cy.get('[data-test="lastName"]').type('Goku');
+      cy.get('[data-test="postalCode"]').type('12345');
+      cy.get('[data-test="continue"]').click();
+      cy.url().should('include', '/checkout-step-two.html');
+      cy.contains('Cancel').click();
+      cy.url().should('include', '/inventory.html');
+    });
+  });
+
+  context('Finish Order Functionality', () => {
+    it('should complete the order and display the Order Confirmation page', () => {
+      const user = usersData.stn;
+      cy.login(user.username, user.password);
+      cy.url().should('include', '/inventory.html');
+      cy.get('.inventory_item').first().within(() => {
+        cy.contains('Add to cart').click();
+      });
+      cy.get('.shopping_cart_link').click();
+      cy.url().should('include', '/cart.html');
+      cy.contains('Checkout').click();
+      cy.url().should('include', '/checkout-step-one.html');
+      cy.get('[data-test="firstName"]').type('Go');
+      cy.get('[data-test="lastName"]').type('han');
+      cy.get('[data-test="postalCode"]').type('12345');
+      cy.get('[data-test="continue"]').click();
+      cy.url().should('include', '/checkout-step-two.html');
+      cy.contains('Finish').click();
+      cy.url().should('include', '/checkout-complete.html');
+      cy.get('.complete-header').should('be.visible').and('contain', 'Thank you for your order!');
+      cy.get('[data-test="back-to-products"]').should('be.visible');
+    });
+  });
 
 
+  context('Opening the Menu', () => {
+    it('should display all available menu options when the hamburger menu icon is clicked', () => {
+      const user = usersData.stn;
+      cy.login(user.username, user.password);
+      cy.url().should('include', '/inventory.html');
+      cy.get('#react-burger-menu-btn').click();
+      cy.get('.bm-item-list').should('be.visible');
+      cy.contains('All Items').should('be.visible');
+      cy.contains('About').should('be.visible');
+      cy.contains('Logout').should('be.visible');
+      cy.contains('Reset App State').should('be.visible');
+    });
+  });
 
 
+  context('Navigation to "All Items"', () => {
+    it('should redirect the user to the products list page when "All Items" is selected', () => {
+      const user = usersData.stn;
+      cy.login(user.username, user.password);
+      cy.url().should('include', '/inventory.html');
+      cy.get('#react-burger-menu-btn').click();
+      cy.get('.bm-item-list').should('be.visible');
+      cy.contains('All Items').click();
+      cy.url().should('include', '/inventory.html');
+      cy.get('.inventory_list').should('be.visible');
+    });
+  });
 
+  context('Navigation to "About"', () => {
+    it('should redirect the user to the Sauce Labs information page', () => {
+      const user = usersData.stn;
+      cy.login(user.username, user.password);
+      cy.url().should('include', '/inventory.html');
+      cy.get('#react-burger-menu-btn').click();
+      cy.contains('About')
+        .should('have.attr', 'href', 'https://saucelabs.com/');
 
-
-
-
+    });
+  });
 
 
 

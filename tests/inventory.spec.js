@@ -146,4 +146,149 @@ test.describe('Inventory tests', () => {
             await expect(page).toHaveURL(/checkout-step-one.html/);
         });
     });
+    test.describe('Customer Information Form in Checkout', () => {
+        test('should proceed to the Order Overview page when valid customer information is provided', async ({ page }) => {
+          const user = users.stn;
+          await login(page, user.username, user.password);
+          await expect(page).toHaveURL(/inventory.html/);
+          await page.locator('.inventory_item').first().locator('text=Add to cart').click();
+          await page.locator('.shopping_cart_link').click();
+          await expect(page).toHaveURL(/cart.html/);
+          await page.locator('text=Checkout').click();
+          await expect(page).toHaveURL(/checkout-step-one.html/);
+          await page.fill('[data-test="firstName"]', 'Spider');
+          await page.fill('[data-test="lastName"]', 'Man');
+          await page.fill('[data-test="postalCode"]', '12345');
+          await page.locator('[data-test="continue"]').click();
+          await expect(page).toHaveURL(/checkout-step-two.html/);
+        });
+      });
+    
+    
+      test.describe('Empty Fields in Checkout Form', () => {
+        test('should display an error message when required fields are empty', async ({ page }) => {
+          const user = users.stn;
+          await login(page, user.username, user.password);
+          await expect(page).toHaveURL(/inventory.html/);
+          await page.locator('.inventory_item').first().locator('text=Add to cart').click();
+          await page.locator('.shopping_cart_link').click();
+          await expect(page).toHaveURL(/cart.html/);
+          await page.locator('text=Checkout').click();
+          await expect(page).toHaveURL(/checkout-step-one.html/);
+          await page.fill('[data-test="firstName"]', 'Bat');
+          await page.fill('[data-test="lastName"]', 'man');
+          // Postal code intentionally left empty
+          await page.locator('[data-test="continue"]').click();
+          await expect(page.locator('[data-test="error"]')).toBeVisible();
+          await expect(page.locator('[data-test="error"]')).toContainText('Postal Code');
+        });
+      });
+    
+    
+      test.describe('Order Overview Page', () => {
+        test('should display the ordered products, prices, taxes, and total sum on the Order Overview page', async ({ page }) => {
+          const user = users.stn;
+          await login(page, user.username, user.password);
+          await expect(page).toHaveURL(/inventory.html/);
+          await page.locator('.inventory_item').first().locator('text=Add to cart').click();
+          await page.locator('.shopping_cart_link').click();
+          await expect(page).toHaveURL(/cart.html/);
+          await page.locator('text=Checkout').click();
+          await expect(page).toHaveURL(/checkout-step-one.html/);
+          await page.fill('[data-test="firstName"]', 'Super');
+          await page.fill('[data-test="lastName"]', 'man');
+          await page.fill('[data-test="postalCode"]', '12345');
+          await page.locator('[data-test="continue"]').click();
+          await expect(page).toHaveURL(/checkout-step-two.html/);
+          await expect(page.locator('.cart_item').first()).toBeVisible(); // At least one item
+          await expect(page.locator('.summary_subtotal_label')).toBeVisible();
+          await expect(page.locator('.summary_subtotal_label')).toContainText('$');
+          await expect(page.locator('.summary_tax_label')).toBeVisible();
+          await expect(page.locator('.summary_tax_label')).toContainText('$');
+          await expect(page.locator('.summary_total_label')).toBeVisible();
+          await expect(page.locator('.summary_total_label')).toContainText('$');
+        });
+      });
+    
+   
+      test.describe('Cancel Order Functionality', () => {
+        test('should cancel the order and redirect the user back to the Inventory page', async ({ page }) => {
+          const user = users.stn;
+          await login(page, user.username, user.password);
+          await expect(page).toHaveURL(/inventory.html/);
+          await page.locator('.inventory_item').first().locator('text=Add to cart').click();
+          await page.locator('.shopping_cart_link').click();
+          await expect(page).toHaveURL(/cart.html/);
+          await page.locator('text=Checkout').click();
+          await expect(page).toHaveURL(/checkout-step-one.html/);
+          await page.fill('[data-test="firstName"]', 'Son');
+          await page.fill('[data-test="lastName"]', 'Goku');
+          await page.fill('[data-test="postalCode"]', '12345');
+          await page.locator('[data-test="continue"]').click();
+          await expect(page).toHaveURL(/checkout-step-two.html/);
+          await page.locator('text=Cancel').click();
+          await expect(page).toHaveURL(/inventory.html/);
+        });
+      });
+    
+     
+      test.describe('Finish Order Functionality', () => {
+        test('should complete the order and display the Order Confirmation page', async ({ page }) => {
+          const user = users.stn;
+          await login(page, user.username, user.password);
+          await expect(page).toHaveURL(/inventory.html/);
+          await page.locator('.inventory_item').first().locator('text=Add to cart').click();
+          await page.locator('.shopping_cart_link').click();
+          await expect(page).toHaveURL(/cart.html/);
+          await page.locator('text=Checkout').click();
+          await expect(page).toHaveURL(/checkout-step-one.html/);
+          await page.fill('[data-test="firstName"]', 'Go');
+          await page.fill('[data-test="lastName"]', 'han');
+          await page.fill('[data-test="postalCode"]', '12345');
+          await page.locator('[data-test="continue"]').click();
+          await expect(page).toHaveURL(/checkout-step-two.html/);
+          await page.locator('text=Finish').click();
+          await expect(page).toHaveURL(/checkout-complete.html/);
+          await expect(page.locator('.complete-header')).toBeVisible();
+          await expect(page.locator('.complete-header')).toHaveText('Thank you for your order!');
+          await expect(page.locator('[data-test="back-to-products"]')).toBeVisible();
+        });
+      });
+    
+      
+      test.describe('Opening the Menu', () => {
+        test('should display all available menu options when the hamburger menu icon is clicked', async ({ page }) => {
+          const user = users.stn;
+          await login(page, user.username, user.password);
+          await expect(page).toHaveURL(/inventory.html/);
+          await page.locator('#react-burger-menu-btn').click();
+          await expect(page.locator('.bm-item-list')).toBeVisible();
+          await expect(page.locator('text=All Items')).toBeVisible();
+          await expect(page.locator('text=About')).toBeVisible();
+          await expect(page.locator('text=Logout')).toBeVisible();
+          await expect(page.locator('text=Reset App State')).toBeVisible();
+        });
+      });
+    
+      test.describe('Navigation to "All Items"', () => {
+        test('should redirect the user to the products list page when "All Items" is selected', async ({ page }) => {
+          const user = users.stn;
+          await login(page, user.username, user.password);
+          await expect(page).toHaveURL(/inventory.html/);
+          await page.locator('#react-burger-menu-btn').click();
+          await page.locator('text=All Items').click();
+          await expect(page).toHaveURL(/inventory.html/);
+          await expect(page.locator('.inventory_list')).toBeVisible();
+        });
+      });
+    
+      test.describe('Navigation to "About"', () => {
+        test('should redirect the user to the Sauce Labs information page', async ({ page }) => {
+          const user = users.stn;
+          await login(page, user.username, user.password);
+          await expect(page).toHaveURL(/inventory.html/);
+          await page.locator('#react-burger-menu-btn').click();
+          await expect(page.locator('text=About')).toHaveAttribute('href', 'https://saucelabs.com/');
+        });
+      });
 });
