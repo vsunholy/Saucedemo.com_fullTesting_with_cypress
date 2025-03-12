@@ -330,7 +330,37 @@ describe('Inventory tests', () => {
     });
   });
 
+  context('Side Menu - Logout Functionality', () => {
 
+
+    it.only('should log out the user and redirect to the login page', () => {
+      const user = usersData.stn;
+      cy.login(user.username, user.password);
+      cy.get('#react-burger-menu-btn').click();
+      cy.get('#logout_sidebar_link').click();
+      cy.url().should('include', '/');
+      cy.get('#login-button').should('be.visible');
+    });
+  });
+
+  context('Reset Functionality', () => {
+   
+
+    it.only('should reset the shopping cart and session data when "Reset App State" is selected', () => {
+      const user = usersData.stn;
+      cy.login(user.username, user.password);
+      cy.get('.inventory_item').first().within(() => {
+        cy.contains('Add to cart').click();
+      });
+      cy.get('.shopping_cart_badge').should('be.visible');
+      cy.get('#react-burger-menu-btn').click();
+      cy.get('.bm-item-list').should('be.visible');
+      cy.get('#reset_sidebar_link').should('be.visible');
+      cy.get('#reset_sidebar_link').click();
+      cy.get('.shopping_cart_badge').should('not.exist');
+      cy.get('.inventory_item').should('have.length.greaterThan', 0);
+    });
+  });
 
 
 
