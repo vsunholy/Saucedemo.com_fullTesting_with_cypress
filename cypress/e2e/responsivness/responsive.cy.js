@@ -5,7 +5,7 @@ describe('Screen tests', () => {
     });
 
     context('Desktop View', () => {
-        it.only('should display the website layout correctly on desktop', () => {
+        it('should display the website layout correctly on desktop', () => {
             cy.viewport(1280, 720);
             cy.get('.login_logo').should('be.visible');
             cy.get('#user-name').should('be.visible');
@@ -16,7 +16,7 @@ describe('Screen tests', () => {
     });
 
     context('Tablet View', () => {
-        it.only('should adapt the website design for tablet screen size', () => {
+        it('should adapt the website design for tablet screen size', () => {
             cy.viewport('ipad-2');
             cy.get('.login_logo').should('be.visible');
             cy.get('#user-name').should('be.visible');
@@ -27,7 +27,7 @@ describe('Screen tests', () => {
 
 
     context('Mobile View', () => {
-        it.only('should display the website correctly on mobile devices and ensure all interactive elements are accessible', () => {
+        it('should display the website correctly on mobile devices and ensure all interactive elements are accessible', () => {
             cy.viewport('iphone-6');
             cy.get('.login_logo').should('be.visible');
             cy.get('#user-name').should('be.visible');

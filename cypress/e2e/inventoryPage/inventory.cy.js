@@ -333,7 +333,7 @@ describe('Inventory tests', () => {
   context('Side Menu - Logout Functionality', () => {
 
 
-    it.only('should log out the user and redirect to the login page', () => {
+    it('should log out the user and redirect to the login page', () => {
       const user = usersData.stn;
       cy.login(user.username, user.password);
       cy.get('#react-burger-menu-btn').click();
@@ -346,7 +346,7 @@ describe('Inventory tests', () => {
   context('Reset Functionality', () => {
    
 
-    it.only('should reset the shopping cart and session data when "Reset App State" is selected', () => {
+    it('should reset the shopping cart and session data when "Reset App State" is selected', () => {
       const user = usersData.stn;
       cy.login(user.username, user.password);
       cy.get('.inventory_item').first().within(() => {
