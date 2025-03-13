@@ -50,5 +50,4 @@ describe('Login Tests', () => {
       cy.contains('Epic sadface: Sorry, this user has been locked out.').should('be.visible');
     });
   });
-
 });

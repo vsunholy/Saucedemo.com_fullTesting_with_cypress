@@ -344,7 +344,7 @@ describe('Inventory tests', () => {
   });
 
   context('Reset Functionality', () => {
-   
+
 
     it('should reset the shopping cart and session data when "Reset App State" is selected', () => {
       const user = usersData.stn;
@@ -361,13 +361,4 @@ describe('Inventory tests', () => {
       cy.get('.inventory_item').should('have.length.greaterThan', 0);
     });
   });
-
-
-
-
-
-
-
-
-
 });
