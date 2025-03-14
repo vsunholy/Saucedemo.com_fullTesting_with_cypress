@@ -361,4 +361,21 @@ describe('Inventory tests', () => {
       cy.get('.inventory_item').should('have.length.greaterThan', 0);
     });
   });
+  context('Checkout Form Error Handling', () => {
+    it('should display an error when required fields are empty in the checkout form', () => {
+      const user = usersData.stn;
+      cy.login(user.username, user.password);
+      cy.get('.inventory_item').first().within(() => {
+        cy.contains('Add to cart').click();
+      });
+      cy.get('.shopping_cart_link').click();
+      cy.contains('Checkout').click();
+      cy.get('[data-test="continue"]').click();
+      cy.get('[data-test="error"]').should('be.visible')
+        .and('contain', 'Error: First Name is required');
+    });
+  });
+
+  
 });
+
