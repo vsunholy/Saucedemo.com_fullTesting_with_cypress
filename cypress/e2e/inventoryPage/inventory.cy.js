@@ -142,7 +142,6 @@ describe('Inventory tests', () => {
     });
   });
 
-
   context('Removing Items from the Cart', () => {
     it('should remove the selected product from the cart and update the cart list', () => {
       const user = usersData.stn;
@@ -176,7 +175,6 @@ describe('Inventory tests', () => {
       cy.url().should('include', '/checkout-step-one.html');
     });
   });
-
 
   context('Customer Information Form in Checkout', () => {
     it('should proceed to the Order Overview page when valid customer information is provided', () => {
@@ -289,7 +287,6 @@ describe('Inventory tests', () => {
     });
   });
 
-
   context('Opening the Menu', () => {
     it('should display all available menu options when the hamburger menu icon is clicked', () => {
       const user = usersData.stn;
@@ -303,7 +300,6 @@ describe('Inventory tests', () => {
       cy.contains('Reset App State').should('be.visible');
     });
   });
-
 
   context('Navigation to "All Items"', () => {
     it('should redirect the user to the products list page when "All Items" is selected', () => {
@@ -331,8 +327,6 @@ describe('Inventory tests', () => {
   });
 
   context('Side Menu - Logout Functionality', () => {
-
-
     it('should log out the user and redirect to the login page', () => {
       const user = usersData.stn;
       cy.login(user.username, user.password);
@@ -344,8 +338,6 @@ describe('Inventory tests', () => {
   });
 
   context('Reset Functionality', () => {
-
-
     it('should reset the shopping cart and session data when "Reset App State" is selected', () => {
       const user = usersData.stn;
       cy.login(user.username, user.password);
@@ -375,7 +367,5 @@ describe('Inventory tests', () => {
         .and('contain', 'Error: First Name is required');
     });
   });
-
-  
 });
 
