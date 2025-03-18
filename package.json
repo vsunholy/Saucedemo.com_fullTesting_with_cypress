@@ -5,16 +5,13 @@
   "scripts": {
     "cy": "cypress open"
   },
-  
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
-  "dependencies": {
-    "cypress": "^14.1.0"
-  },
   "devDependencies": {
     "@playwright/test": "^1.50.1",
-    "@types/node": "^22.13.8"
+    "@types/node": "^22.13.8",
+    "cypress": "^14.1.0"
   }
 }
